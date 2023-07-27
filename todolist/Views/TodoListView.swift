@@ -27,7 +27,9 @@ struct TodoListView: View {
                     TodoListItemView(item: item)
                         .swipeActions{
                             Button("Delete") {
-                                viewModel.deleteItem(id: item.id)
+                                withAnimation{
+                                    viewModel.deleteItem(id: item.id)
+                                }
                             }
                             .tint(Color.red)
                             

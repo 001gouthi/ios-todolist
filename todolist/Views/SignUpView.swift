@@ -11,6 +11,7 @@ struct SignUpView: View {
     
     @StateObject var viewModel: SignupViewViewModel = SignupViewViewModel()
     
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         VStack{
             // Header
@@ -23,6 +24,10 @@ struct SignUpView: View {
                     .foregroundColor(Color.gray.opacity(0.2))
                     .frame(height:300)
                 VStack{
+                    //Error Message
+                    Text(viewModel.errorMsg)
+                        .foregroundColor( colorScheme == .dark ? Color.white : Color.black)
+                        .font(.title3)
                     // Full name
                     TextField("Full Name", text:$viewModel.name)
                         .foregroundColor(.black)

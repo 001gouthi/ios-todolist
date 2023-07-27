@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct HeaderView: View {
-    @State var title:String = ""
-    @State var tagline: String = ""
+    @State var title:String = "Todo LIST APP "
+    @State var tagline: String = "never forget a thing again"
     
     var body: some View {
         ZStack{

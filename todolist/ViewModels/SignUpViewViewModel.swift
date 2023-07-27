@@ -24,7 +24,8 @@ class SignupViewViewModel: ObservableObject {
         
         Auth.auth().createUser(withEmail: email, password: password){ [weak self] result, error in
             guard let userId = result?.user.uid else {
-                self?.errorMsg = "Unknown Error Registration Failed"
+                let errorm = error?.localizedDescription ?? "UNKNOWN ERROR: Registration Failed"
+                self?.errorMsg = errorm
                 return
             }
             
