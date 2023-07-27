@@ -10,7 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @StateObject var viewModel: LoginViewViewModel = LoginViewViewModel()
     
-
+    
     var body: some View {
         VStack{
             // Header
@@ -30,22 +30,22 @@ struct LoginView: View {
                         .font(.largeTitle)
                         .fontWeight(.semibold)
                         .foregroundColor(Color.white)
-                   
+                    
                     //email field
                     TextField("Email", text:$viewModel.email)
                         .foregroundColor(.black)
                         .textFieldStyle(.roundedBorder)
                         .autocorrectionDisabled()
                         .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                        
-                        
-                        
+                    
+                    
+                    
                     // password field
                     SecureField("Password", text:$viewModel.password)
                         .textFieldStyle(.roundedBorder)
                         .autocorrectionDisabled()
                         .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-                        
+                    
                     Button{
                         viewModel.login()
                         
@@ -75,7 +75,7 @@ struct LoginView: View {
         .background(Color.black)
         
     }
-        
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
