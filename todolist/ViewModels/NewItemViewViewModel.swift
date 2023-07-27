@@ -21,7 +21,8 @@ class NewItemViewViewModel : ObservableObject {
             return
         }
         
-        guard Auth.auth().currentUser?.uid != nil else {
+        guard let uId = Auth.auth().currentUser?.uid else {
+            print("ERROR: User ID not found")
             return
         }
         
@@ -37,7 +38,7 @@ class NewItemViewViewModel : ObservableObject {
         let db = Firestore.firestore()
         
         db.collection("users")
-            .document()
+            .document(uId)
             .collection("todos")
             .document(uid)
             .setData(item.asDcitionary())

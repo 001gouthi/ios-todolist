@@ -9,27 +9,25 @@ import SwiftUI
 import FirebaseFirestoreSwift
 
 struct TodoListView: View {
-    @StateObject var viewModel = TodoListViewViewModel()
+    @StateObject var viewModel: TodoListViewViewModel
     @FirestoreQuery var items:[TodoListItem]
     
     init(_ userId:String){
         self._items = FirestoreQuery(collectionPath: "users/\(userId)/todos")
+        self._viewModel = StateObject(wrappedValue: TodoListViewViewModel(userID: userId))
     }
-    func onDelete(){
+    func onDelete(id:String){
+        
         
     }
     var body: some View {
         NavigationView{
-            
             VStack{
                 List(items){item in
                     TodoListItemView(item: item)
                         .swipeActions{
-                            Button(action: onDelete) {
-                                Text("delete")
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
+                            Button("Delete") {
+                                viewModel.deleteItem(id: item.id)
                             }
                             .tint(Color.red)
                             

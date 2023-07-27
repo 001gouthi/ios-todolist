@@ -13,7 +13,7 @@ struct MainView: View {
         NavigationView{
             if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty {
                 TabView{
-                    TodoListView("6tlQ6DoQlRFa5PBPF6s6")
+                    TodoListView(viewModel.currentUserId)
                         .tabItem{
                             Label("Home", systemImage:"house")
                         }

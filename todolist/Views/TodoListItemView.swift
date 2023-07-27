@@ -8,20 +8,33 @@
 import SwiftUI
 
 struct TodoListItemView: View {
+    @StateObject var viewModel = TodoListItemViewViewModel()
+    
     var item:TodoListItem
     var body: some View {
         HStack{
             VStack(alignment:.leading){
-                Text(item.title)
-                    .fontWeight(.bold)
-                    .font(.title2)
+                if item.isDone {
+                    Text(item.title)
+                        .fontWeight(.bold)
+                        .font(.title2)
+                        .strikethrough(true, color: .red)
+                    
+                    
+                    
+                } else {
+                    Text(item.title)
+                        .fontWeight(.bold)
+                        .font(.title2)
+                    
+                }
                 Text("\(Date(timeIntervalSince1970: item.dueDate).formatted(date: .abbreviated, time: .shortened))")
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
             Spacer()
             Button{
-                //item.toggleIsDone(item.isDone)
+                viewModel.toggleIsDone(item:item)
             }label: {
                 Image(systemName: item.isDone ? "checkmark.circle.fill": "circle" )
             }
